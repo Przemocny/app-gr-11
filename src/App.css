@@ -348,3 +348,42 @@ label{
 
     cursor:pointer;
 }
+
+
+.animated{
+    transition: all .3s ease-in;
+}
+
+.fadeOut{
+    opacity: 0;
+    max-height: 0;
+}
+.fadeIn{
+    opacity: 1;
+    max-height: 100px;
+}
+
+
+.top-menu{
+    background:#ddd;
+    padding:10px;
+}
+.side-menu{
+    background:#ccc;
+    display:inline-block;
+    width:20%;
+    overflow: hidden;
+}
+
+.side-menu.no-active{
+    margin-left:-20%;
+}
+
+.main-view{
+    display:inline-block;
+    width:80%;
+}
+
+.main-view.full-width{
+    width:100%
+}
