@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, HashRouter, Switch, Route, Link } from 'react-router-dom'
 
 import Header from './common/Header'
 import Footer from './common/Footer'
@@ -14,63 +15,53 @@ import LifecycleComponent from './sections/LifecycleComponent'
 
 import './App.css'
 
+const View1=() => {
+	return <h1>View1</h1>
+}
 
-// // ref - link do jakichs danych
-// const a = {"key": 0 }
-// const b = a
-// b == a && a === b
+const View2 = () => {
+	return <h1>View2</h1>
+}
 
-// // bez ref - kopia niepowiązana
-// const c = {...a} || Object.assign({}, {}, a)
-// c == a && c !== a
+const Menu = () => {
+	return (
+		<ul>
+			<li>
+				<Link to='/view1'>View1</Link>
+			</li>
+			<li>
+				<Link to='/view2'>View2</Link>
+			</li>
+		</ul>
+	)
+}
 
+const Views = () => {
+	return (
+		<Switch>
+			<Route exact path='/view1'>
+				<View1 />
+			</Route>
+			<Route exact path='/view2'>
+				<View2 />
+			</Route>
+		</Switch>
+	)
+}
 
 class App extends React.Component {
-
-	input = React.createRef(null)
-	input1 = React.createRef(null)
-	input2 = React.createRef(null)
-
-	componentDidMount() {
-		// console.log('ref', this.input.current)
-		// console.log('ref', this.input2)
-		this.input.current.focus()
-		console.log('ref', this.input2)
-
-		const {offsetHeight, offsetLeft, offsetTop } = this.input2.current
-
-		console.log('ref',  {offsetHeight, offsetLeft, offsetTop })
-
-
-
-	}
+	componentDidMount() {}
 
 	render() {
 		return (
-			<div className='App'>
-				<input ref={this.input} placeholder="input" style={{margin:10}}
-
-				onKeyDown={(event)=>{
-					if(event.key === "Enter"){
-						this.input1.current.focus()
-					}
-				}}
-				
-				/>
-				<input ref={this.input1}
-				onKeyDown={(event)=>{
-					if(event.key === "Enter"){
-						this.input2.current.focus()
-					}
-				}}
-				placeholder="input" style={{margin:10}}/>
-				<input ref={this.input2} 
-				onKeyDown={(event)=>{
-					if(event.key === "Enter"){
-						// this.onSubmit()
-					}
-				}}
-				placeholder="input" style={{margin:10}}/>
+			<div className='App' style={{ margin: 30 }}>
+				<div />
+				<Router>
+					<div>
+						<Menu />
+						<Views />
+					</div>
+				</Router>
 			</div>
 		)
 	}
