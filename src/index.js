@@ -1,12 +1,38 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { Provider } from 'react-redux';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// new way
+import { configureStore } from '@reduxjs/toolkit'
+import reducer from './stores/new_store';
+import reducerPosts from './stores/async_store';
+
+const store = configureStore({
+    reducer: { bigGlobalStore: reducer, 
+        posts:reducerPosts }
+})
+
+// old way
+// import { countReducer } from './stores/old_store';
+// import { combineReducers, createStore } from 'redux';
+
+// const mainReducer = combineReducers({
+//     bigGlobalStore: countReducer
+// })
+
+// const store = createStore(mainReducer)
+
+const ReduxApp = ()=>{
+    return (<Provider store={store}>
+            <App/>
+        </Provider>)
+}
+
+render(
+    <ReduxApp/>,
+    document.getElementById('root')
+)
+
