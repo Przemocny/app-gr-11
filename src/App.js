@@ -55,15 +55,10 @@ class App extends React.Component {
 		console.log(this.state)
 	}
 
-
 	render() {
 		return (
 			<div className='App' style={{ margin: 30 }}>
-				<Wrapper 
-					appState={this.state}
-					onInputChange={this.onInputChange}
-					onSubmit={this.onSubmit}
-		/>
+				<ReduxComponent/>
 			</div>
 		)
 	}

@@ -19,6 +19,7 @@ class StateViewer extends React.Component{
 
         // zapytanie axiosa
         setTimeout(()=>{
+            
             doneLoadingPosts(dataFromApi)
         }, 3000)
     }
